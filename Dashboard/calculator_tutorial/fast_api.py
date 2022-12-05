@@ -13,3 +13,9 @@ app = FastAPI()
 def operate(input:UserInput):
     result = calculate(input.operation, input.x, input.y)
     return result
+
+
+# # For running streamlit app
+# streamlit run stream_lit.py
+# # For running backend with FastAPI
+# uvicorn fast_api:app --reload

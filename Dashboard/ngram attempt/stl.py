@@ -23,11 +23,10 @@ inputs = {'hc_lo': hc_lo, 'grade': grade, 'n': n}
 tries = {'crap': 'crap'}
 
 if st.button('N-gramize'):
-    print('PROBLEM')
-    res = requests.post(url='http://127.0.0.1/ngram', data=json.dumps(inputs), verify=False, timeout=200)
+    res = requests.post(url='http://127.0.0.1:8000/ngram', data=json.dumps(inputs))
+    print(res.text)
     st.subheader(f'Response from API = {res.text}')
 
 if st.button('TRY'):
-    print('PROBLEM')
-    res = requests.post(url='http://127.0.0.1/try', data=json.dumps(tries), verify=False, timeout=200)
+    res = requests.post(url='http://127.0.0.1:8000/try', data=json.dumps(tries))
     st.subheader(f'Response from API = {res.text}')
