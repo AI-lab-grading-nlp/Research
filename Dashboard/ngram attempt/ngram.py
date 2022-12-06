@@ -43,12 +43,15 @@ with open('hclos_scores_dfs.txt') as f:
     data = f.read()
 
 js = json.loads(data)
-print(js['#algorithms_1'])
+# print(js['#algorithms_1'])
 
 
 def ngramize(hc_lo, grade, n):
     """Return n-gram of hc_lo and grade."""
     ngrams = pd.Series(nltk.ngrams(js[f'{hc_lo}_{grade}'], n)).value_counts()[:10]
+    ngrams = ngrams.to_frame().reset_index()
+    words = [' '.join(ngram) for ngram in ngrams['index'].to_list()]
+    counts = ngrams[0].to_list()
+    return [(words[i],counts[i]) for i in range(len(words))]
 
-    return ngrams
-
+# print(ngramize('#algorithms', 1, 3))
