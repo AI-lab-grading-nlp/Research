@@ -10,7 +10,7 @@ def page2():
 
 page_names_to_funcs = {
     "Main Page": main_page,
-    "N-grams": ngrams,
+    "N-grams": page2,
 }
 
 selected_page = st.sidebar.selectbox("Select a page", page_names_to_funcs.keys())
