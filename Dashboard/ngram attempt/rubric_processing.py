@@ -31,7 +31,7 @@ for r in rubric.keys():
 print(rubric_comp)
 
 details = rubric_comp
-with open('rubrics.txt', 'w') as convert_file:
+with open('rubrics.py', 'w') as convert_file:
     convert_file.write(json.dumps(details))
 
 print('converted')

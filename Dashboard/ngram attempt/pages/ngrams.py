@@ -23,6 +23,8 @@ inputs = {'hc_lo': hc_lo, 'grade': grade, 'n': n}
 
 
 if st.button('N-gramize'):
+    print(inputs)
+    print(json.dumps(inputs))
     res = requests.post(url='http://127.0.0.1:8000/ngram', data=json.dumps(inputs))
     print(res.text)
     res_js = res.json()

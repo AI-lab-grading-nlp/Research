@@ -8,9 +8,14 @@ def page2():
     st.markdown("# N-Grams")
     st.sidebar.markdown("# N-grams")
 
+def page3():
+    st.markdown("# Most likely location")
+    st.sidebar.markdown("# Most likely location")
+
 page_names_to_funcs = {
     "Main Page": main_page,
     "N-grams": page2,
+    "Most likely location": page3,
 }
 
 selected_page = st.sidebar.selectbox("Select a page", page_names_to_funcs.keys())
@@ -46,7 +51,7 @@ if st.button('Grade'):
     print('')
     print(res)
 
-    st.subheader(f'The following components were missing from the response:')
+    st.subheader(f'The following components were most likely missing from the response:')
 
     # if first char is letter, display it
 

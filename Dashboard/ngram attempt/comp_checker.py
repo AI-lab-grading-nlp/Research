@@ -1,7 +1,9 @@
+from collections import defaultdict
+
 import pandas as pd
 import json
 import numpy as np
-
+from rubrics import rubrics_dict as js
 import spacy
 
 nlp = spacy.load('en_core_web_lg')
@@ -27,9 +29,6 @@ for hclo in hclo_lst:
     hclos_dfs[hclo] = data.loc[data['HC'] == hclo]
 
 
-with open('rubrics.txt') as f:
-    data = f.read()
-js = json.loads(data)
 
 
 def doc_sim_check_rubric(response, hclo, threshold=0.85):
@@ -65,7 +64,7 @@ def get_missing(components, hclo):
 
 
 def get_feedback(response, HC):
-    threshold = 0.85
+    threshold = 0.8
     components = doc_sim_check_rubric(response, HC)
     missing = get_missing(components, HC)
     if missing == []:
@@ -74,3 +73,56 @@ def get_feedback(response, HC):
 
 ans = get_feedback(hclos_dfs['#algorithms']['response'].iloc[2], '#algorithms')
 print(ans, type(ans))
+
+
+import re
+
+def most_likely_in(response, HC):
+    # parse through the sentences
+    # doc = nlp(response)
+    sentences = re.split('[-:;,.!?]', response)
+    print(sentences)
+
+    # get indices
+    indices = {}
+
+    sim_dict = defaultdict(tuple)
+    # get rubric components for the HC
+    rel_rubric = js[HC]
+    for comp in rel_rubric:
+        for sent in sentences:
+            # get doc similarity between sentence and rubric component
+            doc1 = nlp(comp)
+            doc2 = nlp(sent)
+            sim = doc1.similarity(doc2)
+            try:
+                span = re.search(sent, response, re.IGNORECASE).span()
+            except:
+                span = None
+            sim_dict[(comp, sent)] = sim, span
+            cur_max = sim
+    return sim_dict
+
+
+print('Most likely in:')
+response = hclos_dfs['#algorithms']['response'].iloc[17]
+print(response)
+print('')
+# att = most_likely_in(response, '#algorithms')
+# print(att)
+
+def process_most_likely(response, HC):
+    # get the most likely in
+    lst = []
+
+    att = most_likely_in(response, HC)
+    # order the att first by component, then by similarity
+    att = sorted(att.items(), key=lambda x: (x[0][0], x[1][0]), reverse=True)
+    for i in att:
+        lst.append(i)
+    print('WOAH PROCESSING THINGS HERE')
+    return lst
+
+att = process_most_likely(response, '#algorithms')
+print(att, type(att))
+
