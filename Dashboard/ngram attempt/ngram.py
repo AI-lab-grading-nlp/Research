@@ -21,10 +21,18 @@ import json
 #
 # import itertools
 #
+# # Clean from stopwords using spacy
+# import spacy
+# nlp = spacy.load('en_core_web_lg')
+# stopwords = nlp.Defaults.stop_words
+#
+#
 # for hclo in hclo_lst:
 #     cur_df = hclos_dfs[hclo]
 #     for grade in range(1, 6):
 #         hclos_scores_dfs[f'{hclo}_{grade}'] = cur_df.loc[cur_df['Assessment reports Score'] == grade]['Poll Responses Response'].to_list()
+#         # remove stopwords from each
+#         hclos_scores_dfs[f'{hclo}_{grade}'] = [[word for word in doc if word not in stopwords] for doc in hclos_scores_dfs[f'{hclo}_{grade}']]
 #
 #         hclos_scores_dfs[f'{hclo}_{grade}'] = list(itertools.chain( *hclos_scores_dfs[f'{hclo}_{grade}']))
 #
@@ -36,7 +44,7 @@ import json
 #     convert_file.write(json.dumps(details))
 #
 # print('converted')
-#
+
 
 hclos_scores_dfs = {}
 with open('hclos_scores_dfs.txt') as f:
