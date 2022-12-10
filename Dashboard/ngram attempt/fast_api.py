@@ -4,6 +4,7 @@ from ngram import ngramize
 import json
 from comp_checker import get_feedback, process_most_likely
 from typing import List
+from bloom_questions import infer, create_prompt
 
 class UserInput(BaseModel):
     hc_lo: str
@@ -19,6 +20,10 @@ class UserInput3(BaseModel):
 class UserInput4(BaseModel):
     poll_response_1: str
     poll_hc_lo_1: str
+
+class UserInput5(BaseModel):
+    answers: str
+    
 
 
 app = FastAPI()
@@ -40,6 +45,18 @@ def process(input: UserInput4):
     result = list(process_most_likely(input.poll_response_1, input.poll_hc_lo_1))
     print(type(result), 'TYPE YOU ARE MY TYPE')
     return result
+
+@app.post('/questioncreation')
+def question_creation(input: UserInput5):
+    
+    prompt = create_prompt(input.answers)    
+    res = infer(prompt)
+    print(res)
+    if res['error']:
+        return res['error']
+    return res[0]['generated_text']
+    
+
 
 # # For running streamlit app
 # streamlit run stream_lit.py

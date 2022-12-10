@@ -72,7 +72,7 @@ def get_feedback(response, HC):
     return missing
 
 ans = get_feedback(hclos_dfs['#algorithms']['response'].iloc[2], '#algorithms')
-print(ans, type(ans))
+# print(ans, type(ans))
 
 
 import re
@@ -104,10 +104,10 @@ def most_likely_in(response, HC):
     return sim_dict
 
 
-print('Most likely in:')
-response = hclos_dfs['#algorithms']['response'].iloc[17]
-print(response)
-print('')
+# print('Most likely in:')
+# response = hclos_dfs['#algorithms']['response'].iloc[17]
+# print(response)
+# print('')
 # att = most_likely_in(response, '#algorithms')
 # print(att)
 
@@ -123,6 +123,6 @@ def process_most_likely(response, HC):
     print('WOAH PROCESSING THINGS HERE')
     return lst
 
-att = process_most_likely(response, '#algorithms')
-print(att, type(att))
+# att = process_most_likely(response, '#algorithms')
+# print(att, type(att))
 

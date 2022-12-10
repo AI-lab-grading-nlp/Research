@@ -12,10 +12,15 @@ def page3():
     st.markdown("# Most likely location")
     st.sidebar.markdown("# Most likely location")
 
+def page4():
+    st.markdown('# Question creation')
+    st.sidebar.markdown('# Question creation')
+
 page_names_to_funcs = {
     "Main Page": main_page,
     "N-grams": page2,
     "Most likely location": page3,
+    "Question creation": page4,
 }
 
 selected_page = st.sidebar.selectbox("Select a page", page_names_to_funcs.keys())
