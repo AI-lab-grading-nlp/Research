@@ -4,3 +4,5 @@ s2v_reddit_2019_lg.tar.gz.001
 database.db
 2211.01786.pdf
 Dashboard/ngram attempt/en_core_web_lg-3.4.1-py3-none-any.whl
+.env
+Dashboard/ngram attempt/pages/.env
