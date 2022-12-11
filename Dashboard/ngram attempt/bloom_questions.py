@@ -10,9 +10,9 @@ def infer(prompt,
           top_k = 50,
           num_beams = 0,
           no_repeat_ngram_size = 0,
-          top_p = 0.7,
+          top_p = 0.4,
           seed= random.randint(0,1000000),
-          temperature=0.2,
+          temperature=0.6,
           greedy_decoding = False,
           return_full_text = False):
     
@@ -49,10 +49,10 @@ def infer(prompt,
 def create_prompt(answers):
 
     prompt = ''''''
-    answers = answers.split('\n')
+    answers = answers.split(';-')
     for i, answer in enumerate(answers):
         prompt += f'''Prompt {i+1}: {answer}\n'''
-    fin = '''Question: What questions are the above prompts answering? \n Answer: '''
+    fin = '''Question: What question are all the prompts above answering? \n Answer: '''
     
     prompt += fin
     

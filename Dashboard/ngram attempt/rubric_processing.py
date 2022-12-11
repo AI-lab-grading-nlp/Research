@@ -28,11 +28,11 @@ rubric_comp = {}
 for r in rubric.keys():
     rubric_comp[r] = make_rubric_components(rubric[r])
 
-print(rubric_comp)
+
 
 details = rubric_comp
 with open('rubrics.py', 'w') as convert_file:
     convert_file.write(json.dumps(details))
 
-print('converted')
+
 

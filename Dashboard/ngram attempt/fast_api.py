@@ -52,9 +52,9 @@ def question_creation(input: UserInput5):
     prompt = create_prompt(input.answers)    
     res = infer(prompt)
     print(res)
-    if res['error']:
+    if type(res) == dict:
         return res['error']
-    return res[0]['generated_text']
+    return res[0]['generated_text'][len(prompt):]
     
 
 
