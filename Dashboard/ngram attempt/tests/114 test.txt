@@ -1,0 +1,80 @@
+Math guide
+
+
+
+The new jargon in this chapter is important. We'll use it a lot during the remainder of the course.
+
+
+
+Joint distribution: A distribution over 2 random variables that provides the probability mass or density function, ﻿P(X=x, Y=y)P(X=x,Y=y)﻿, for any combination of values regardless of whether or not the two r.v.s are independent. You can also think of this as ﻿P(X=x \text{ and } Y=y)P(X=x and Y=y)﻿ but it is usually written using a comma rather than "and". We can extend this concept to any number of r.v.s (more than 2) and which case we write ﻿P(X_1=x_1, X_2=x_2, \ldots, X_n=x_n)P(X 
+1
+​
+ =x 
+1
+​
+ ,X 
+2
+​
+ =x 
+2
+​
+ ,…,X 
+n
+​
+ =x 
+n
+​
+ )﻿.
+Conditional distribution: A distribution over one random variable given the value of another random variable. ﻿P(X=x \,|\, Y=y) = P(X=x,Y=y)\,/\,P(Y=y)P(X=x∣Y=y)=P(X=x,Y=y)/P(Y=y)﻿.
+Marginal distribution: When we have 2 random variables, ﻿XX﻿ and ﻿YY﻿, and we want to know the distribution over ﻿XX﻿ without knowing (without conditioning) on the value of ﻿YY﻿, we call this the marginal distribution over ﻿XX﻿ and write its probability as ﻿P(X=x)P(X=x)﻿. To get the marginal distribution, we apply the law of total probability to the joint distribution over ﻿(X,Y)(X,Y)﻿. This process is called "summing out" or "integrating out" or "marginalizing over" the value of ﻿YY﻿.
+
+
+﻿P(X=x) = \sum_y P(X=x,Y=y)P(X=x)=∑ 
+y
+​
+ P(X=x,Y=y)﻿
+
+
+
+Independence
+
+
+
+Two random variables are independent if and only if their joint PMF factorizes into their marginal PMFs.
+
+
+
+﻿f_{X,Y}(x,y) = f_X(x)\,f_Y(x)f 
+X,Y
+​
+ (x,y)=f 
+X
+​
+ (x)f 
+Y
+​
+ (x)﻿
+
+
+
+This is equivalent to saying that the conditional distribution of each r.v. is equal to its marginal distribution.
+
+
+
+﻿f_{X|Y}(x\,|\,y) = f_X(x)\quad\text{and}\quad f_{Y|X}(y\,|\,x) = f_Y(y)f 
+X∣Y
+​
+ (x∣y)=f 
+X
+​
+ (x)andf 
+Y∣X
+​
+ (y∣x)=f 
+Y
+​
+ (y)﻿
+
+
+
+This is analogous to events where we had, for independent events ﻿AA﻿ and ﻿BB﻿ that ﻿P(A \cap B) = P(A)P(B)P(A∩B)=P(A)P(B)﻿ and ﻿P(A\,|\,B) = P(A)P(A∣B)=P(A)﻿ and ﻿P(B\,|\,A) = P(B)P(B∣A)=P(B)﻿.

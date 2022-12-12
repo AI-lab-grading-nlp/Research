@@ -54,7 +54,7 @@ def generate_answer():
     
     if string_data is not None:
         session_history_text = 'Prompt: ' + string_data
-        session_history_text += f" \nMarvin is a chatbot that aids in understanding any topic and tests your knowledge. \n\n"
+        session_history_text += f" \nMarvin is a chatbot that aids in understanding any topic and tests your knowledge by letting you respond to his questions. \n\n"
         session_history_text += f"You: {user_message}\nMarvin: "
     else:
         session_history_text = f" \nMarvin is a chatbot that aids in understanding any topic and tests your knowledge. \n\n"
