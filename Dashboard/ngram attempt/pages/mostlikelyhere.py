@@ -43,8 +43,8 @@ if st.button('Find most likely'):
     # comp : (sent, sim, span)
     for i in range(len(res_js)):
         if res_js[i][1][0] > comps[res_js[i][0][0]][1]:
-            comps[res_js[i][0][0]] = (res_js[i][0][1], res_js[i][1][0], [res_js[i][1][1]])
-    print(comps)
+            comps[res_js[i][0][0]] = (res_js[i][0][1], res_js[i][1][0], [res_js[i][1][1]], res_js[i][1][2], res_js[i][1][3])
+ 
 
     # go through response and highlight the matching span for each component
 
@@ -52,7 +52,7 @@ if st.button('Find most likely'):
     print(poll_response_1)
     with st.spinner('Highlighting...'):
         used = set()
-        for comp, (sent, sim, span) in comps.items():
+        for comp, (sent, sim, span, old, new) in comps.items():
             print(comp, sent, sim, span)
             annot = str(comp) + ' ' + 'with document similarity of' + ' ' + str(round(sim, 2))
             span_start = span[0][0]

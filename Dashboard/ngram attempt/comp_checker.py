@@ -5,6 +5,8 @@ import json
 import numpy as np
 from rubrics import rubrics_dict as js
 import spacy
+from hclos_responses_dict import hclos_responses
+
 
 nlp = spacy.load('en_core_web_lg')
 
@@ -89,6 +91,13 @@ def most_likely_in(response, HC):
     sim_dict = defaultdict(tuple)
     # get rubric components for the HC
     rel_rubric = js[HC]
+    prev_responses = hclos_responses[f'{HC}_4']
+
+    avg_sim = 0
+    for i in prev_responses:
+        avg_sim += nlp(i).similarity(nlp(response))
+    avg_sim /= len(prev_responses)
+
     for comp in rel_rubric:
         for sent in sentences:
             # get doc similarity between sentence and rubric component
@@ -99,17 +108,10 @@ def most_likely_in(response, HC):
                 span = re.search(sent, response, re.IGNORECASE).span()
             except:
                 span = None
-            sim_dict[(comp, sent)] = sim, span
-            cur_max = sim
+            sim_dict[(comp, sent)] = ((avg_sim+sim)/2, span, sim, avg_sim)
     return sim_dict
 
 
-# print('Most likely in:')
-# response = hclos_dfs['#algorithms']['response'].iloc[17]
-# print(response)
-# print('')
-# att = most_likely_in(response, '#algorithms')
-# print(att)
 
 def process_most_likely(response, HC):
     # get the most likely in
@@ -122,7 +124,3 @@ def process_most_likely(response, HC):
         lst.append(i)
     print('WOAH PROCESSING THINGS HERE')
     return lst
-
-# att = process_most_likely(response, '#algorithms')
-# print(att, type(att))
-
