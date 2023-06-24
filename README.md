@@ -1,7 +1,6 @@
 # Research
 This is for reserching and understanding the models being used
 
-
 To run the Streamlit app:
 1. Navigate to Dashboard/ngram attempt.
 2. Install the requirements file using `pip install -r requirements.txt`.
